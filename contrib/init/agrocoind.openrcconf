@@ -1,0 +1,33 @@
+# /etc/conf.d/agrocoind: config file for /etc/init.d/agrocoind
+
+# Config file location
+#AGROCOIND_CONFIGFILE="/etc/agrocoin/agrocoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $AGROCOIND_USER)
+#AGROCOIND_PIDDIR="/var/run/agrocoind"
+
+# What filename to give the pidfile
+#AGROCOIND_PIDFILE="${AGROCOIND_PIDDIR}/agrocoind.pid"
+
+# Where to write agrocoind data (be mindful that the blockchain is large)
+#AGROCOIND_DATADIR="/var/lib/agrocoind"
+
+# User and group to own agrocoind process
+#AGROCOIND_USER="agrocoin"
+#AGROCOIND_GROUP="agrocoin"
+
+# Path to agrocoind executable
+#AGROCOIND_BIN="/usr/bin/agrocoind"
+
+# Nice value to run agrocoind under
+#AGROCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#AGROCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for agrocoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+AGROCOIND_SIGTERM_TIMEOUT=600

@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+#  agrocoind The agrocoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: agrocoind
+# processname: agrocoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/agrocoind, see below
+if [ -f /etc/sysconfig/agrocoind ]; then
+        . /etc/sysconfig/agrocoind
+fi
+
+RETVAL=0
+
+prog=agrocoind
+# you can override the lockfile via AGROCOIND_LOCKFILE in /etc/sysconfig/agrocoind
+lockfile=${AGROCOIND_LOCKFILE-/var/lock/subsys/agrocoind}
+
+# agrocoind defaults to /usr/bin/agrocoind, override with AGROCOIND_BIN
+agrocoind=${AGROCOIND_BIN-/usr/bin/agrocoind}
+
+# agrocoind opts default to -disablewallet, override with AGROCOIND_OPTS
+agrocoind_opts=${AGROCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $agrocoind $agrocoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog -t600
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

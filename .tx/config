@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[agrocoin.qt-translation-021x]
+file_filter = src/qt/locale/agrocoin_<lang>.ts
+source_file = src/qt/locale/agrocoin_en.ts
+source_lang = en
