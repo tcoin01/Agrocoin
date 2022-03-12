@@ -122,6 +122,8 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("155.138.209.183");
         vSeeds.emplace_back("99.107.111.41");
+        vSeeds.emplace_back("104.14.168.97");
+        vSeeds.emplace_back("104.14.168.98");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,24);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,23);
